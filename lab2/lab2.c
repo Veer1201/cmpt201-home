@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
+int main() {
+  char input[256];
+
+  while (1) {
+    printf("Enter program to run.\n");
+    fflush(stdout);
+
+    if (fgets(input, sizeof(input), stdin) == NULL) {
+      printf("\n");
+      break;
+    }
+
+    input[strcspn(input, "\n")] = '\0';
+
+    if (strcspn(input, "exit") == 0 || strlen(input) == 0) {
+      break;
+    }
+
+    pid_t pid = fork();
+    if (pid < 0) {
+      perror("Fork Failed");
+      exit(1);
+    }
+
+    if (pid == 0) {
+      execl(input, input, (char *)NULL);
+
+      perror("Exec failure");
+      exit(1);
+    } else {
+      int status;
+      waitpid(pid, &status, 0);
+    }
+  }
+  return 0;
+}
