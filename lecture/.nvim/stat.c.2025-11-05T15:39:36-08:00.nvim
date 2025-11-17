@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <sys/stat.h>
+
+int main(void) {
+  
+ //:wq
+  printf(getCWD());
+  //char *arg[] = {"hello", "stat.c"};
+  struct stat sb;
+  stat("stat.c", &sb);
+  if (S_ISREG(sb.st_mode)) {
+    printf("is a file");
+  } else {
+    printf("not afile:");
+  }
+}
