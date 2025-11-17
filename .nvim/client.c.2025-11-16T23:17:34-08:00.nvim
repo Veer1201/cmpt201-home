@@ -6,17 +6,17 @@ port number).
 Ans: IP Address: 127.0.0.1 Port Number: 8000
 
 2. Is it UDP or TCP? How do you know?
-Ans: It is TCP because the socket is created using SOCK_STREAM. If it was UDP,
-thesn socket was created using SOCKET_DGRAM.
+Ans: It is TCP because the socket is created using SOCK_STREAM. If it was UDP, thesn socket was
+created using SOCKET_DGRAM.
 
 3. The client is going to send some data to the server. Where does it get this
 data from? How can you tell in the code?
-Ans: It gets data fron standard input by user as we are usng read command which
-takes in the input from user.
+Ans: It gets data fron standard input by user as we are usng read command which takes in the input
+from user.
 
 4. How does the client program end? How can you tell that in the code?
-Ans: It stops when user does not enter anything in input and enters just an
-empty line and also if user presses contol-C (^C).
+Ans: It stops when user does not enter anything in input and enters just an empty line and also if
+user presses contol-C (^C).
 */
 
 #include <arpa/inet.h>

@@ -36,14 +36,14 @@ void *handle_client(void *arg) {
 
   // TODO: print the message received from client
   // TODO: increase total_message_count per message
-
+  
   int cfd = client->cfd;
   int my_id = client->client_id;
   free(client);
 
   char buf[BUF_SIZE];
 
-  while (1) {
+  while(1) {
     ssize_t bytes_read = recv(cfd, buf, BUF_SIZE - 1, 0);
     if (bytes_read <= 0) {
       break;
@@ -86,8 +86,7 @@ int main() {
 
   for (;;) {
     // TODO: create a new thread when a new connection is encountered
-    socklen_t peer_addr_size = sizeof(struct sockaddr *);
-    int cfd = accept(sfd, (struct sockaddr *)&addr, &peer_addr_size);
+    int cfd = accept(sfd, &addr, sizeof(struct sockaddr_in));
 
     if (cfd == -1) {
       perror("accept");
@@ -97,7 +96,7 @@ int main() {
     struct client_info *args = malloc(sizeof(struct client_info));
     args->cfd = cfd;
 
-    pthread_mutex_lock(&client_id_mutex);
+    pthread_mutex_lock(&cliend_id_mutex);
     args->client_id = client_id_counter++;
     pthread_mutex_unlock(&client_id_mutex);
 
@@ -106,12 +105,13 @@ int main() {
     if (pthread_create(&thread, NULL, handle_client, args) != 0) {
       perror("Thread create failed");
       free(args);
-    } else {
+    }
+    else {
       pthread_detach(thread);
     }
   }
-  // TODO: call handle_client() when launching a new thread, and provide
-  // client_info
+    // TODO: call handle_client() when launching a new thread, and provide
+    // client_info
 
   if (close(sfd) == -1) {
     handle_error("close");

@@ -86,7 +86,7 @@ int main() {
 
   for (;;) {
     // TODO: create a new thread when a new connection is encountered
-    socklen_t peer_addr_size = sizeof(struct sockaddr *);
+    socklen_t peer_addr_size = sizeof(struct sockaddr *); 
     int cfd = accept(sfd, (struct sockaddr *)&addr, &peer_addr_size);
 
     if (cfd == -1) {

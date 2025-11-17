@@ -86,8 +86,7 @@ int main() {
 
   for (;;) {
     // TODO: create a new thread when a new connection is encountered
-    socklen_t peer_addr_size = sizeof(struct sockaddr *);
-    int cfd = accept(sfd, (struct sockaddr *)&addr, &peer_addr_size);
+    int cfd = accept(sfd, &addr, sizeof(struct sockaddr_in));
 
     if (cfd == -1) {
       perror("accept");
@@ -97,7 +96,7 @@ int main() {
     struct client_info *args = malloc(sizeof(struct client_info));
     args->cfd = cfd;
 
-    pthread_mutex_lock(&client_id_mutex);
+    pthread_mutex_lock(&cliend_id_mutex);
     args->client_id = client_id_counter++;
     pthread_mutex_unlock(&client_id_mutex);
 
