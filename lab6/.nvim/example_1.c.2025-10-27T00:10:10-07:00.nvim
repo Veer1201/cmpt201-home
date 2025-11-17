@@ -1,0 +1,225 @@
+Last login: Sun Oct 26 23:56:46 on console
+veer@Veers-MacBook-Air-5 ~ % docker start -ai cmpt201
+
+Ｗｅｌｃｏｍｅ  ｔｏ  ＣＭＰＴ  ２０１！
+
+"Sometimes, the elegant implementation is just a function. Not a method. Not a class. Not a framework. Just a function."
+	-- John Carmack, creator of DOOM (https://twitter.com/ID_AA_Carmack/status/53512300451201024)
+
+~❯ cd cmpt201-home
+~/cmpt201-home❯ ls -a
+.  ..  .git  .gitignore  lab0  lab1  lab2  lab3  lab5  lecture  README.md
+~/cmpt201-home❯ mkdir lab6
+~/cmpt201-home❯ cd lab6
+~/cmpt201-home/lab6❯ nvim example_1.c
+~/cmpt201-home/lab6❯ nvim example_2.c
+~/cmpt201-home/lab6❯ nvim CMakeLists.txt
+~/cmpt201-home/lab6❯ cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+-- The C compiler identification is Clang 18.1.3
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/clang - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/cmpt201/cmpt201-home/lab6/build
+~/cmpt201-home/lab6❯ cd build/
+~/cmpt201-home/lab6/build❯ make ./example_1.c
+make: *** No rule to make target 'example_1.c'.  Stop.
+~/cmpt201-home/lab6/build❯ make ./example_1
+make: *** No rule to make target 'example_1'.  Stop.
+~/cmpt201-home/lab6/build❯ make ./example1
+[ 50%] Building C object CMakeFiles/example1.dir/example_1.c.o
+/home/cmpt201/cmpt201-home/lab6/example_1.c:1:76: error: expected identifier
+    1 |                                                            fprintf(stderr, "Test failed: %s\n",
+      |                                                                            ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:2:2: error: invalid preprocessing directive
+    2 | #expr); exit(1);
+      |  ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:7:2: error: invalid preprocessing directive
+    7 | #expr);
+}
+|
+    ^ / home / cmpt201 / cmpt201 -
+        home / lab6 / example_1.c : 13 : 68 : error : expected ')' 13 |
+}
+node_t;
+      |                                                                    ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:1:67: note: to match this '('
+    1 |                                                            fprintf(stderr, "Test failed: %s\n",
+      |                                                                   ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:1:60: error: type specifier missing, defaults to 'int'; ISO C99 and later do not support implicit int [-Wimplicit-int]
+    1 |                                                            fprintf(stderr, "Test failed: %s\n",
+      |                                                            ^
+      |                                                            int
+/home/cmpt201/cmpt201-home/lab6/example_1.c:1:60: warning: declaration of built-in function 'fprintf' requires inclusion of the header <stdio.h> [-Wbuiltin-requires-header]
+/home/cmpt201/cmpt201-home/lab6/example_1.c:15:60: error: unknown type name 'node_t'
+   15 |                                                            node_t *head = NULL;
+      |                                                            ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:15:75: error: use of undeclared identifier 'NULL'
+   15 |                                                            node_t *head = NULL;
+      |                                                                           ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:18:64: error: unknown type name 'uint64_t'
+   18 |                                                                uint64_t data) {
+  |
+      ^ / home / cmpt201 / cmpt201 - home / lab6 /
+                                         example_1.c : 19 : 62 : error
+      : use of undeclared identifier 'node_t' 19 |
+      node_t *new_node =
+      |
+      ^ / home / cmpt201 / cmpt201 - home / lab6 /
+                                         example_1.c : 19 : 70 : error
+      : use of undeclared identifier 'new_node' 19 |
+      node_t *new_node =
+          | ^ / home / cmpt201 / cmpt201 - home / lab6 /
+                                               example_1.c : 20 : 66 : error
+      : call to undeclared library
+            function 'malloc' with type 'void *(unsigned long)'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+   20 |                                                                  malloc(sizeof(
+      |                                                                  ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:20:66: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+/home/cmpt201/cmpt201-home/lab6/example_1.c:21:70: error: use of undeclared identifier 'node_t'
+   21 |                                                                      node_t));
+  |
+      ^ / home / cmpt201 / cmpt201 - home / lab6 /
+                                         example_1.c : 22 : 62 : error
+      : use of undeclared identifier 'new_node' 22 |
+      new_node->data =
+      |
+      ^ / home / cmpt201 / cmpt201 - home / lab6 /
+                                         example_1.c : 24 : 62 : error
+      : use of undeclared identifier 'new_node' 24 |
+      new_node->next = |
+                       ^ / home / cmpt201 / cmpt201 - home / lab6 /
+                                                          example_1.c : 25 : 66
+      : error : use of undeclared identifier 'NULL' 25 |
+                       NULL;
+  |
+      ^ / home / cmpt201 / cmpt201 - home / lab6 /
+                                         example_1.c : 27 : 74 : error
+      : use of undeclared identifier 'NULL' 27 |
+      if (head == NULL) {
+    |
+        ^ / home / cmpt201 / cmpt201 - home / lab6 /
+                                           example_1.c : 28 : 71 : error
+        : use of undeclared identifier 'new_node' 28 |
+        head = new_node;
+      |                                                                       ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:30:64: error: use of undeclared identifier 'node_t'
+   30 |                                                                node_t *curr =
+      |                                                                ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:30:72: error: use of undeclared identifier 'curr'
+   30 |                                                                node_t *curr =
+      |                                                                        ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:1:60: warning: a function declaration without a prototype is deprecated in all versions of C and is treated as a zero-parameter prototype in C23, conflicting with a subsequent declaration [-Wdeprecated-non-prototype]
+    1 |                                                            fprintf(stderr, "Test failed: %s\n",
+      |                                                            ^
+/usr/include/stdio.h:357:12: note: conflicting prototype is here
+  357 | extern int fprintf (FILE *__restrict __stream,
+      |            ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+2 warnings and 20 errors generated.
+make[3]: *** [CMakeFiles/example1.dir/build.make:76: CMakeFiles/example1.dir/example_1.c.o] Error 1
+make[2]: *** [CMakeFiles/Makefile2:85: CMakeFiles/example1.dir/all] Error 2
+make[1]: *** [CMakeFiles/Makefile2:92: CMakeFiles/example1.dir/rule] Error 2
+make: *** [Makefile:124: example1] Error 2
+~/cmpt201-home/lab6/build❯ cd ../
+~/cmpt201-home/lab6❯ nvim example_1.c
+~/cmpt201-home/lab6❯ make ./example1
+make: *** No rule to make target 'example1'.  Stop.
+~/cmpt201-home/lab6❯ ls -a
+.  ..  build  CMakeLists.txt  example_1.c  example_2.c  .nvim
+~/cmpt201-home/lab6❯ cd build/
+~/cmpt201-home/lab6/build❯ make ./example1
+[ 50%] Building C object CMakeFiles/example1.dir/example_1.c.o
+/home/cmpt201/cmpt201-home/lab6/example_1.c:4:17: error: expected identifier
+    4 | fprintf(stderr, "Test failed: %s\n",
+      |                 ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:5:2: error: invalid preprocessing directive
+    5 | #expr); exit(1);
+      |  ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:10:2: error: invalid preprocessing directive
+   10 | #expr);
+  }
+  |
+      ^ / home / cmpt201 / cmpt201 -
+          home / lab6 / example_1.c : 16 : 9 : error : expected ')' 16 | } node_t;
+      |         ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:4:8: note: to match this '('
+    4 | fprintf(stderr, "Test failed: %s\n",
+      |        ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:4:1: error: type specifier missing, defaults to 'int'; ISO C99 and later do not support implicit int [-Wimplicit-int]
+    4 | fprintf(stderr, "Test failed: %s\n",
+      | ^
+      | int
+/home/cmpt201/cmpt201-home/lab6/example_1.c:4:1: warning: a function declaration without a prototype is deprecated in all versions of C and is treated as a zero-parameter prototype in C23, conflicting with a previous declaration [-Wdeprecated-non-prototype]
+/home/cmpt201/cmpt201-home/lab6/example_1.c:4:1: error: conflicting types for 'fprintf'
+/usr/include/stdio.h:357:12: note: previous declaration is here
+  357 | extern int fprintf (FILE *__restrict __stream,
+      |            ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:18:1: error: unknown type name 'node_t'; did you mean 'mode_t'?
+   18 | node_t *head = NULL;
+      | ^~~~~~
+      | mode_t
+/usr/include/aarch64-linux-gnu/sys/types.h:69:18: note: 'mode_t' declared here
+   69 | typedef __mode_t mode_t;
+      |                  ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:21:3: error: unknown type name 'node_t'; did you mean 'mode_t'?
+   21 |   node_t *new_node = malloc(sizeof(node_t));
+      |   ^~~~~~
+      |   mode_t
+/usr/include/aarch64-linux-gnu/sys/types.h:69:18: note: 'mode_t' declared here
+   69 | typedef __mode_t mode_t;
+      |                  ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:21:36: error: use of undeclared identifier 'node_t'
+   21 |   node_t *new_node = malloc(sizeof(node_t));
+      |                                    ^
+/home/cmpt201/cmpt201-home/lab6/example_1.c:22:11: error: member reference base type 'mode_t' (aka 'unsigned int') is not a structure or union
+   22 |   new_node->data = data;
+      |   ~~~~~~~~^ ~~~~
+/home/cmpt201/cmpt201-home/lab6/example_1.c:23:11: error: member reference base type 'mode_t' (aka 'unsigned int') is not a structure or union
+   23 |   new_node->next = NULL;
+      |   ~~~~~~~~^ ~~~~
+ example_1.c +
+    1 #include <stdint.h> // For uint64_t#include <stdio.h>  // For fprintf, stderr, NULL
+    2 #include <stdlib.h> // For malloc, exit, NULL
+E   3 fprintf(stderr, "Test failed: %s\n",     ■■■ expected identifier
+E   4 #expr); exit(1);     ■ invalid preprocessing directive
+    5
+      }
+      6 else {
+        7 ┆ 8 ┆ printf("Test passed: %s\n", E 9 #expr);
+      }
+      ■ invalid preprocessing directive 10
+      }
+      11 12 typedef struct node {
+        13 ┆ uint64_t data;
+        14 ┆ struct node *next;
+        E 15
+      } node_t;
+      ■ expected ')' 16 E 17 node_t *head = NULL;
+      ■ unknown type name 'node_t' 18 19 void insert_sorted(uint64_t data) {
+        E 20 ┆ node_t *new_node = malloc(sizeof(node_t));
+        ■■■ use of undeclared identifier 'node_t' E 21 ┆ new_node->data = data;
+        ■ use of undeclared identifier 'new_node' E 22 ┆ new_node->next = NULL;
+        ■ use of undeclared identifier 'new_node' 23 ┆ 24 ┆ if (head == NULL) {
+          E 25 ┆ ┆ head = new_node;
+          ■ use of undeclared identifier 'new_node' 26 ┆
+        }
+        else {
+          E 27 ┆ ┆ node_t *curr = head;
+          ■■ use of undeclared identifier 'curr' 28 #define ASSERT(expr) 29 ┆ {
+            30 ┆ ┆ if (!(expr)) {
+              31 ┆ ┆ ┆ fprintf(
+                  stderr,
+                  32 ┆ ┆ ┆ ┆ ┆ ┆ ┆ "Asserti" 33 ┆ ┆ ┆ ┆ ┆ ┆ ┆ "on"
+                                                              " " 34 ┆ ┆ ┆ ┆ ┆ ┆ ┆ "failed:" 35 ┆ ┆ ┆ ┆ ┆ ┆ ┆ " %s\n",
+                  36 ┆ ┆ ┆ ┆ ┆ ┆ ┆ #expr);
+              37 ┆ ┆ ┆ exit(1);
+              38 ┆ ┆
+            }
+            39 ┆
+          }
+          40 ┆ ┆ 41 #define TEST(expr) 42 ┆ {
+            INSERT example_1.c | +W : 1 E : 19 unix | utf - 8 | c 30 % 27 : 25:

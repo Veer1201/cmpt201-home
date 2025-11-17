@@ -1,0 +1,46 @@
+#define _POSIX_C_SOURCE 200809L
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_HISTORY 5
+
+void free_history(char *history[], int size) {
+  for (int i = 0; i < size; i++) {
+    free(history[i]);
+  }
+}
+
+int main() {
+  char *history[MAX_HISTORY] = {NULL};
+  int count = 0;
+  char *line = NULL;
+  size_t len = 0;
+
+  while (1) {
+    printf("Enter Input: ");
+    ssize_t read = getline(&line, &len, stdin);
+    if (read == -1) {
+      break;
+    }
+
+    if (line[read - 1] == '\n') {
+      line[read - 1] = '\0';
+    }
+
+    int index = count % MAX_HISTORY;
+    free(history[index]);
+
+    if (strcmp(line, "print") == 0) {
+      printf("Last 5 lines: \n");
+      int start = (count >= MAX_HISTORY) ? count - MAX_HISTORY : 0;
+      for (int i = start; i < count; i++) {
+        printf("%s\n", history[i % MAX_HISTORY]);
+      }
+    }
+  }
+
+  free(line);
+  free_history(history, MAX_HISTORY);
+  return 0;
+}
