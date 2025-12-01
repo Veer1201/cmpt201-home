@@ -1,0 +1,14 @@
+#include <sys/stat.h>
+#include <stdio.h>
+
+int main(void) {
+
+  struct stat sb;
+  stat("stat.c", &sb);
+  if (S_ISREG(sb.st_mode)) {
+    printf("is a file");
+  }
+  else{
+    printf("not afile:");
+  }
+}

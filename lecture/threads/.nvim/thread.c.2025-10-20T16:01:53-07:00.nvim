@@ -1,0 +1,22 @@
+#include <pthread.h>
+#include <stdio.h>
+#include <string.h>
+
+void *thread_func(void *arg) {
+  char *my_msg = arg;
+  printf("Message is: %s\n", my_msg);
+  printf("Hii\n");
+  return (void *) strlen(my_msg);
+}
+
+int main(void) {
+  pthread_t thread;
+
+  pthread_create(&thread, NULL, thread_func, "hello threads!");
+
+  void *ans;  
+  pthread_join(thread, &ans);
+  long long len = (int) ans;
+  printf("Done: ANswer is %lld.\n", len);
+  return 0;
+}

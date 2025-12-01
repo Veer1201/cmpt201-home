@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <sys/stat.h>
+
+int main(void) {
+  
+  char *arg[] = {"hello", "stat.c"};
+  struct stat sb;
+  stat(arg[0], &sb);
+  if (S_ISREG(sb.st_mode)) {
+    printf("is a file");
+  } else {
+    printf("not afile:");
+  }
+}

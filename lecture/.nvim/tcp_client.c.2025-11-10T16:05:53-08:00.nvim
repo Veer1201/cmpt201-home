@@ -1,0 +1,24 @@
+// client
+#include <stdio.h>
+#include <stdio.h>
+#include <sys/socket.h>
+#include <stdlib.h>
+#include <sys/un.h>
+#include <unistd.h>
+
+int main() {
+  printf("client:\n");
+
+   //sokcet
+  int socket_fd = socket(AF_UNIX, SOCK_STREAM, 0);
+  if (socket_fd == -1) {
+    perror("Socket failed");
+    exit(EXIT_FAILURE);
+  }
+
+  // connect
+
+  
+
+  return 0;
+}
