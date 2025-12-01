@@ -10,10 +10,10 @@
 #define GRN "\e[0;32m"
 #define CRESET "\e[0m"
 
-#define handle_error(msg)            \
-  do {                               \
-    perror(msg);                     \
-    exit(EXIT_FAILURE);              \
+#define handle_error(msg)                                                      \
+  do {                                                                         \
+    perror(msg);                                                               \
+    exit(EXIT_FAILURE);                                                        \
   } while (0)
 
 size_t read_all_bytes(const char *filename, void *buffer, size_t buffer_size) {
@@ -63,7 +63,17 @@ int main() {
                                    "signature3.sig"};
 
   // TODO: Load the public key using PEM_read_PUBKEY
-  EVP_PKEY *pubkey = NULL;
+  FILE *keyfile = fopen("public_key.pem", "r");
+  if (!keyfile) {
+    handle_error("Could not open public_key.pem");
+  }
+
+  EVP_PKEY *pubkey = PEM_read_PUBKEY(keyfile, NULL, NULL, NULL);
+  fclose(keyfile);
+
+  if (!pubkey) {
+    handle_error("Error loading public key");
+  }
 
   // Verify each message
   for (int i = 0; i < 3; i++) {
@@ -102,6 +112,28 @@ int verify(const char *message_path, const char *sign_path, EVP_PKEY *pubkey) {
 
   // TODO: Check if the message is authentic using the signature.
   // Look at: https://wiki.openssl.org/index.php/EVP_Signing_and_Verifying
+  size_t msg_len = read_all_bytes(message_path, message, MAX_FILE_SIZE);
+  size_t sig_len = read_all_bytes(sign_path, signature, MAX_FILE_SIZE);
 
-  return -1;
+  EVP_MD_CTX *ctx = EVP_MD_CTX_new();
+  if (!ctx) {
+    perror("Failed to create context");
+    return -1;
+  }
+
+  if (EVP_DigestVerifyInit(ctx, NULL, EVP_sha256(), NULL, pubkey) <= 0) {
+    EVP_MD_CTX_free(ctx);
+    return -1;
+  }
+
+  if (EVP_DigestVerifyUpdate(ctx, message, msg_len) <= 0) {
+    EVP_MD_CTX_free(ctx);
+    return -1;
+  }
+
+  int result = EVP_DigestVerifyFinal(ctx, signature, sig_len);
+
+  EVP_MD_CTX_free(ctx);
+
+  return result;
 }
